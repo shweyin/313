@@ -50,8 +50,8 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-10">
-      <div className="overflow-x-auto">
-    <StartScreen />
+      <div className="flex flex-col overflow-x-auto">
+        <StartScreen />
 
         <div className="flex gap-3 items-center pb-5">
           <button className="btn" onClick={addPlayer}>
@@ -80,8 +80,7 @@ export default function Home() {
                       onChange={handleNameChange}
                       id={`${playerIndex}`}
                       value={scores[playerIndex].name}
-                      // onKeyDown={handleButtonPress}
-                      className="w-[100px] bg-transparent"
+                      className="bg-transparent rounded-sm p-1  focus:bg-slate-700 outline-none input input-bordered input-xs w-full max-w-xs"
                       tabIndex={playerIndex + 1}
                     />
                   </th>
@@ -89,10 +88,9 @@ export default function Home() {
                     <td key={round}>
                       <input
                         tabIndex={(round + 1) * scores.length + playerIndex + 1}
-                        className="w-[30px] bg-slate-700 rounded-sm"
+                        className="bg-slate-700 rounded-sm p-1  focus:bg-slate-600 outline-none input input-bordered input-xs w-full max-w-xs"
                         id={`${playerIndex}-${round}`}
                         value={scores[playerIndex].score[round]}
-                        // value={(round + 1) * scores.length + playerIndex + 1}
                         onChange={handleInput}
                       />
                     </td>
