@@ -17,7 +17,7 @@ const StartScreen = () => {
         onClick={() => setShowStartScreen(false)}
       >
         <Image
-          className="mt-0 mb-o mr-auto ml-auto p-4 w-80"
+          className="mt-0 mb-o mr-auto ml-auto p-4 w-72"
           src={sign}
           width={500}
           height={500}
