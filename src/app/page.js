@@ -2,14 +2,12 @@
 import { useRef, useState } from "react";
 
 export default function Home() {
-  const [round, setRound] = useState(1);
   const [scores, setScores] = useState([
     {
       name: "Player1",
       score: ["", "", "", "", "", "", "", "", "", "", "", "", ""],
     },
   ]);
-  const inputsRef = useRef([]);
 
   const addPlayer = () => {
     setScores([
@@ -50,47 +48,24 @@ export default function Home() {
     setScores(newScores);
   };
 
-  const handleButtonPress = (e, rowIndex, colIndex) => {
-    if (e.key !== "Tab" && e.key !== "Enter") return;
-    e.preventDefault();
-
-    // Calculate the index of the input below
-    const nextRowIndex = rowIndex + 1;
-    const nextInputIndex =
-      nextRowIndex * inputsRef.current[0].length + colIndex;
-
-    // Focus on the input below
-    if (
-      inputsRef.current[nextRowIndex] &&
-      inputsRef.current[nextRowIndex][colIndex]
-    ) {
-      inputsRef.current[nextRowIndex][colIndex].focus();
-    } else if (inputsRef.current[nextInputIndex]) {
-      inputsRef.current[nextInputIndex].focus();
-    }
-  };
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-10">
       <div className="overflow-x-auto">
         <div className="flex gap-3 items-center pb-5">
-          <div className="flex grow">Round: {round}</div>
           <button className="btn" onClick={addPlayer}>
-            +
+            Add Player
           </button>
           <button className="btn" onClick={clearScores}>
-            Clear
+            New Game
           </button>
         </div>
         <div className="overflow-x-auto ">
           <table className="table table-xs ">
             <thead>
               <tr>
-                <th>Player</th>
+                <th>Player Name</th>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((round) => (
-                  <th key={round}>
-                    <button onClick={() => setRound(round)}>R{round}</button>
-                  </th>
+                  <th key={round}>R{round}</th>
                 ))}
                 <th>Total</th>
               </tr>
@@ -105,22 +80,17 @@ export default function Home() {
                       value={scores[playerIndex].name}
                       // onKeyDown={handleButtonPress}
                       className="w-[100px] bg-transparent"
+                      tabIndex={playerIndex + 1}
                     />
                   </th>
                   {player.score.map((score, round) => (
                     <td key={round}>
                       <input
+                        tabIndex={(round + 1) * scores.length + playerIndex + 1}
                         className="w-[30px] bg-slate-700 rounded-sm"
                         id={`${playerIndex}-${round}`}
                         value={scores[playerIndex].score[round]}
-                        ref={(input) =>
-                          (inputsRef.current[
-                            playerIndex * scores.length + round
-                          ] = input)
-                        }
-                        onKeyDown={(e) =>
-                          handleButtonPress(e, playerIndex, round)
-                        }
+                        // value={(round + 1) * scores.length + playerIndex + 1}
                         onChange={handleInput}
                       />
                     </td>
@@ -135,25 +105,25 @@ export default function Home() {
                 </tr>
               ))}
             </tbody>
-            {/* <tfoot>
-            <tr>
-              <th>Player</th>
-              <th>R1</th>
-              <th>R2</th>
-              <th>R3</th>
-              <th>R4</th>
-              <th>R5</th>
-              <th>R6</th>
-              <th>R7</th>
-              <th>R8</th>
-              <th>R9</th>
-              <th>R10</th>
-              <th>R11</th>
-              <th>R12</th>
-              <th>R13</th>
-              <th>Total</th>
-            </tr>
-          </tfoot> */}
+            <tfoot>
+              <tr>
+                <th>Player Name</th>
+                <th>R1</th>
+                <th>R2</th>
+                <th>R3</th>
+                <th>R4</th>
+                <th>R5</th>
+                <th>R6</th>
+                <th>R7</th>
+                <th>R8</th>
+                <th>R9</th>
+                <th>R10</th>
+                <th>R11</th>
+                <th>R12</th>
+                <th>R13</th>
+                <th>Total</th>
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>
