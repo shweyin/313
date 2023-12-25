@@ -13,7 +13,10 @@ module.exports = {
       
     },
     extend: {
-
+      backgroundImage: {
+        'snow': "url('/assets/images/snow.jpg')",
+        'sky': "url('/assets/images/sky.jpg')",
+      }
     },
   },
   plugins: [require("daisyui")],
