@@ -5,7 +5,7 @@ export default function Home() {
   const [scores, setScores] = useState([
     {
       name: "Player1",
-      score: ["", "", "", "", "", "", "", "", "", "", "", "", ""],
+      score: ["", "", "", "", "", "", "", "", "", "", ""],
     },
   ]);
 
@@ -14,7 +14,7 @@ export default function Home() {
       ...scores,
       {
         name: `Player${scores.length + 1}`,
-        score: ["", "", "", "", "", "", "", "", "", "", "", "", ""],
+        score: ["", "", "", "", "", "", "", "", "", "", ""],
       },
     ]);
   };
@@ -23,7 +23,7 @@ export default function Home() {
     setScores(
       scores.map((e) => ({
         ...e,
-        score: ["", "", "", "", "", "", "", "", "", "", "", "", ""],
+        score: ["", "", "", "", "", "", "", "", "", "", ""],
       }))
     );
   };
@@ -66,7 +66,7 @@ export default function Home() {
             <thead>
               <tr>
                 <th>Player Name</th>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((round) => (
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((round) => (
                   <th key={round}>R{round}</th>
                 ))}
                 <th>Total</th>
@@ -108,19 +108,17 @@ export default function Home() {
             <tfoot>
               <tr>
                 <th>Player Name</th>
-                <th>R1</th>
-                <th>R2</th>
-                <th>R3</th>
-                <th>R4</th>
-                <th>R5</th>
-                <th>R6</th>
-                <th>R7</th>
-                <th>R8</th>
-                <th>R9</th>
-                <th>R10</th>
-                <th>R11</th>
-                <th>R12</th>
-                <th>R13</th>
+                <th>3 Cards</th>
+                <th>4 Cards</th>
+                <th>5 Cards</th>
+                <th>6 Cards</th>
+                <th>7 Cards</th>
+                <th>8 Cards</th>
+                <th>9 Cards</th>
+                <th>10 Cards</th>
+                <th>11 Cards</th>
+                <th>12 Cards</th>
+                <th>13 Cards</th>
                 <th>Total</th>
               </tr>
             </tfoot>
