@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import sign from "../../assets/images/sign.png";
+import Snow from "../../assets/images/snow.jpg";
 import santa from "../../assets/images/santa.gif";
 
 const StartScreen = () => {
@@ -9,8 +10,8 @@ const StartScreen = () => {
   return (
     <div>
       <div
-      style={{backgroundImage: `url(${sign})`}}
-        className={` bg-no-repeat bg-cover bg-center bg-fixed absolute flex flex-col justify-center inset-0 z-10 text-center cursor-pointer duration-300 ${
+        style={{ backgroundImage: `url(${Snow.src})` }}
+        className={`absolute flex flex-col justify-center inset-0 z-10 text-center cursor-pointer duration-300 ${
           showStartScreen ? "translate-y-0" : "translate-y-[-100%]"
         }`}
         onClick={() => setShowStartScreen(false)}
