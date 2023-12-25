@@ -1,6 +1,8 @@
 "use client";
 import { useRef, useState } from "react";
 import StartScreen from "./components/StartScreen";
+import Sky from "../assets/images/sky.jpg";
+
 export default function Home() {
   const [scores, setScores] = useState([
     {
@@ -49,19 +51,22 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-10">
+    <main
+      style={{ backgroundImage: `url(${Sky.src})` }}
+      className="bg-no-repeat bg-cover bg-center bg-fixed flex min-h-screen flex-col items-center justify-between p-10"
+    >
       <div className="flex flex-col overflow-x-auto">
         <StartScreen />
 
         <div className="flex gap-3 items-center pb-5">
-          <button className="btn" onClick={addPlayer}>
+          <button className="btn bg-gray-800" onClick={addPlayer}>
             Add Player
           </button>
-          <button className="btn" onClick={clearScores}>
+          <button className="btn bg-gray-800" onClick={clearScores}>
             New Game
           </button>
         </div>
-        <div className="overflow-x-auto ">
+        <div className="overflow-x-auto bg-gray-800	p-3 rounded-md">
           <table className="table table-xs ">
             <thead>
               <tr>
