@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
-
+import StartScreen from "./components/StartScreen";
 export default function Home() {
   const [scores, setScores] = useState([
     {
@@ -51,6 +51,8 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-10">
       <div className="overflow-x-auto">
+    <StartScreen />
+
         <div className="flex gap-3 items-center pb-5">
           <button className="btn" onClick={addPlayer}>
             Add Player
