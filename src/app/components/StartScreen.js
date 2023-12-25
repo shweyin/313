@@ -24,7 +24,7 @@ const StartScreen = () => {
           alt="sign"
         />
         <Image
-          className="mt-0 mb-o mr-auto ml-auto w-26"
+          className="mt-0 mb-o mr-auto ml-auto w-24"
           src={santa}
           alt="my gif"
           height={500}
