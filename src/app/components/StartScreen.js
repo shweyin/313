@@ -17,14 +17,14 @@ const StartScreen = () => {
         onClick={() => setShowStartScreen(false)}
       >
         <Image
-          className="mt-0 mb-o mr-auto ml-auto p-4 w-72"
+          className="mt-0 mb-o mr-auto ml-auto p-4 w-64"
           src={sign}
           width={500}
           height={500}
           alt="sign"
         />
         <Image
-          className="mt-0 mb-o mr-auto ml-auto w-20"
+          className="mt-0 mb-o mr-auto ml-auto w-26"
           src={santa}
           alt="my gif"
           height={500}
