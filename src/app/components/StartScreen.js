@@ -11,7 +11,7 @@ const StartScreen = () => {
     <div>
       <div
         style={{ backgroundImage: `url(${Snow.src})` }}
-        className={`absolute flex flex-col justify-center inset-0 z-10 text-center cursor-pointer duration-300 ${
+        className={`bg-white bg-no-repeat bg-cover bg-center bg-fixed absolute flex flex-col justify-center inset-0 z-10 text-center cursor-pointer duration-300 ${
           showStartScreen ? "translate-y-0" : "translate-y-[-100%]"
         }`}
         onClick={() => setShowStartScreen(false)}
@@ -24,7 +24,7 @@ const StartScreen = () => {
           alt="sign"
         />
         <Image
-          className="mt-0 mb-o mr-auto ml-auto w-36"
+          className="mt-0 mb-o mr-auto ml-auto w-28"
           src={santa}
           alt="my gif"
           height={500}
