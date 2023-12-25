@@ -96,6 +96,7 @@ export default function Home() {
                         className="bg-slate-700 rounded-sm p-1  focus:bg-slate-600 outline-none input input-bordered input-xs w-full max-w-xs"
                         id={`${playerIndex}-${round}`}
                         value={scores[playerIndex].score[round]}
+                        type="number"
                         onChange={handleInput}
                       />
                     </td>
