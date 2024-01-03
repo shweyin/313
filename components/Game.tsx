@@ -12,7 +12,7 @@ const colors = [
 ];
 
 export default function Game() {
-  const [scores, setScores] = useState([
+  const [scores, setScores] = useState<any[]>([
     {
       name: "Player1",
       score: ["", "", "", "", "", "", "", "", "", "", ""],
@@ -38,7 +38,7 @@ export default function Game() {
     );
   };
 
-  const handleInput = (e) => {
+  const handleInput = (e: any) => {
     const playerIndex = e.target.id.substring(0, e.target.id.lastIndexOf("-"));
     const roundIndex = e.target.id.substring(e.target.id.indexOf("-") + 1);
 
@@ -51,24 +51,27 @@ export default function Game() {
     setScores(newScores);
   };
 
-  const handleNameChange = (e) => {
+  const handleNameChange = (e: any) => {
     let newScores = [...scores];
     newScores[e.target.id].name = e.target.value;
 
     setScores(newScores);
   };
 
-  const getScoreSum = (score) => {
+  const getScoreSum = (score: any) => {
     return score.reduce(
-      (accumulator, currentValue) => accumulator + +currentValue,
+      (accumulator: any, currentValue: any) => accumulator + +currentValue,
       0
     );
   };
 
-  const getPlaceNumber = (targetPlayer) => {
-    const sortedScores = [].concat(scores).sort((playerA, playerB) => {
-      return getScoreSum(playerA.score) > getScoreSum(playerB.score) ? 1 : -1;
-    });
+  const getPlaceNumber = (targetPlayer: any) => {
+    const temp: any[] = [];
+    const sortedScores: any[] = temp
+      .concat(scores)
+      .sort((playerA: any, playerB: any) => {
+        return getScoreSum(playerA.score) > getScoreSum(playerB.score) ? 1 : -1;
+      });
 
     let res = 0;
     sortedScores.forEach((player, index) => {
@@ -120,7 +123,7 @@ export default function Game() {
                       tabIndex={playerIndex + 1}
                     />
                   </th>
-                  {player.score.map((score, round) => (
+                  {player.score.map((score: any, round: any) => (
                     <td key={round}>
                       <input
                         tabIndex={(round + 1) * scores.length + playerIndex + 1}
