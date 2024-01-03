@@ -5,16 +5,22 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+ 
     extend: {
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        btn: {
-          background: 'hsl(var(--btn-background))',
-          'background-hover': 'hsl(var(--btn-background-hover))',
-        },
+        'top': '#72C9F6',
+        'top-button': '#2B347D',
+  
+        
       },
+      backgroundImage: {
+        'snow': "url('/assets/snow.jpg')",
+        'sky': "url('/assets/sky.jpg')",
+      }
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["dark"],
+  },
 }
