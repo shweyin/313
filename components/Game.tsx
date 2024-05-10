@@ -3,18 +3,26 @@ import { useState } from "react";
 import StartScreen from "./StartScreen";
 import Sky from "../assets/sky.jpg";
 
+// const colors = [
+//   "bg-orange-400",
+//   "bg-emerald-400",
+//   "bg-cyan-400",
+//   "bg-indigo-400",
+//   "bg-pink-400",
+// ];
+
 const colors = [
-  "bg-orange-700",
-  "bg-emerald-700",
-  "bg-cyan-700",
-  "bg-indigo-700",
-  "bg-pink-700",
+  "bg-slate-300",
+  "bg-slate-400",
+  "bg-slate-500",
+  "bg-slate-600",
+  "bg-slate-700",
 ];
 
 export default function Game() {
   const [scores, setScores] = useState<any[]>([
     {
-      name: "Player1",
+      name: "1",
       score: ["", "", "", "", "", "", "", "", "", "", ""],
     },
   ]);
@@ -23,7 +31,7 @@ export default function Game() {
     setScores([
       ...scores,
       {
-        name: `Player${scores.length + 1}`,
+        name: `${scores.length + 1}`,
         score: ["", "", "", "", "", "", "", "", "", "", ""],
       },
     ]);
