@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StartScreen from "./StartScreen";
 import Sky from "../assets/sky.jpg";
 
@@ -19,16 +19,41 @@ const colors = [
   "bg-slate-700",
 ];
 
+const BLANK_GAME: Score[] = [
+  {
+    name: "1",
+    score: ["", "", "", "", "", "", "", "", "", "", ""],
+  },
+];
+
+type Score = {
+  name: string;
+  score: string[];
+};
+
 export default function Game() {
-  const [scores, setScores] = useState<any[]>([
-    {
-      name: "1",
-      score: ["", "", "", "", "", "", "", "", "", "", ""],
-    },
-  ]);
+  const [scores, setScores] = useState<Score[]>(BLANK_GAME);
+
+  useEffect(() => {
+    const gamestate = window.localStorage.getItem("GAMESTATE");
+    if (gamestate !== null) {
+      setScores(JSON.parse(window.localStorage.getItem("GAMESTATE")!));
+    }
+  }, []);
+
+  const setGamestate = (gamestate: Score[]) => {
+    setScores(gamestate);
+    window.localStorage.setItem("GAMESTATE", JSON.stringify(gamestate));
+  };
+  // const [scores, setScores] = useState<any[]>([
+  //   {
+  //     name: "1",
+  //     score: ["", "", "", "", "", "", "", "", "", "", ""],
+  //   },
+  // ]);
 
   const addPlayer = () => {
-    setScores([
+    setGamestate([
       ...scores,
       {
         name: `${scores.length + 1}`,
@@ -38,7 +63,7 @@ export default function Game() {
   };
 
   const clearScores = () => {
-    setScores(
+    setGamestate(
       scores.map((e) => ({
         ...e,
         score: ["", "", "", "", "", "", "", "", "", "", ""],
@@ -56,14 +81,14 @@ export default function Game() {
 
     newScores[playerIndex] = { ...scores[playerIndex], score: newScore };
 
-    setScores(newScores);
+    setGamestate(newScores);
   };
 
   const handleNameChange = (e: any) => {
     let newScores = [...scores];
     newScores[e.target.id].name = e.target.value;
 
-    setScores(newScores);
+    setGamestate(newScores);
   };
 
   const getScoreSum = (score: any) => {
