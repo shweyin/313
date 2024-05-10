@@ -190,6 +190,7 @@ export default function Game() {
                 <th>12 Cards</th>
                 <th>13 Cards</th>
                 <th>Total</th>
+                <th>Place</th>
               </tr>
             </tfoot>
           </table>
