@@ -175,7 +175,7 @@ export default function Game() {
                           colors[playerIndex % 5][0] +
                           " " +
                           colors[playerIndex % 5][1]
-                        } focus:opacity-80 rounded-sm p-1 text-white focus:outline-white input input-bordered input-xs w-full max-w-xs`}
+                        } focus:opacity-80 rounded-sm p-1 focus:outline-white input input-bordered input-xs w-full max-w-xs`}
                         id={`${playerIndex}-${round}`}
                         value={scores[playerIndex].score[round]}
                         type="number"
