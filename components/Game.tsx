@@ -3,14 +3,6 @@ import { useEffect, useState } from "react";
 import StartScreen from "./StartScreen";
 import Sky from "../assets/sky.jpg";
 
-// const colors = [
-//   "bg-orange-400",
-//   "bg-emerald-400",
-//   "bg-cyan-400",
-//   "bg-indigo-400",
-//   "bg-pink-400",
-// ];
-
 const colors = [
   ["bg-slate-300", "text-black"],
   ["bg-slate-400", "text-black"],
@@ -21,7 +13,7 @@ const colors = [
 
 const BLANK_GAME: Score[] = [
   {
-    name: "1",
+    name: "New Player",
     score: ["", "", "", "", "", "", "", "", "", "", ""],
   },
 ];
@@ -56,7 +48,7 @@ export default function Game() {
     setGamestate([
       ...scores,
       {
-        name: `${scores.length + 1}`,
+        name: `New Player`,
         score: ["", "", "", "", "", "", "", "", "", "", ""],
       },
     ]);
@@ -158,8 +150,7 @@ export default function Game() {
                     <input
                       onChange={handleNameChange}
                       id={`${playerIndex}`}
-                      // value={scores[playerIndex].name}
-                      value={"New Player"}
+                      value={scores[playerIndex].name}
                       className="bg-transparent rounded-sm p-1  focus:bg-slate-700 outline-none input input-bordered input-xs w-full max-w-xs"
                       tabIndex={playerIndex + 1}
                       onFocus={(event) => {
