@@ -19,7 +19,7 @@ export const getPlaceNumber = (scores: Score[], targetPlayer: Score) => {
 };
 
 export const sortScores = (scores: Score[]) => {
-  return scores.toSorted((playerA: Score, playerB: Score) => {
+  return [...scores].sort((playerA: Score, playerB: Score) => {
     return getScoreSum(playerA.score) > getScoreSum(playerB.score) ? 1 : -1;
   });
 }
