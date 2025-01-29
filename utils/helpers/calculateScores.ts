@@ -18,9 +18,20 @@ export const getPlaceNumber = (scores: Score[], targetPlayer: Score) => {
   return res + 1;
 };
 
-export const getScoreSum = (score: any) => {
+export const sortScores = (scores: Score[]) => {
+  return scores.toSorted((playerA: Score, playerB: Score) => {
+    return getScoreSum(playerA.score) > getScoreSum(playerB.score) ? 1 : -1;
+  });
+}
+
+export const getScoreSum = (score: (number | null)[]) => {
   return score.reduce(
-    (accumulator: any, currentValue: any) => accumulator + +currentValue,
+    (accumulator: number, currentValue: number 
+      | null
+    ) => {
+      const value = currentValue === null ? 0 : currentValue;
+      return accumulator + value
+    },
     0
   );
 };

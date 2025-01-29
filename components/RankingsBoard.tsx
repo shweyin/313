@@ -1,14 +1,16 @@
-import { getScoreSum } from "@/utils/helpers/calculateScores";
+import { getScoreSum, sortScores } from "@/utils/helpers/calculateScores";
 import { Score } from "./Game";
 
 const RankingsBoard = ({ scores }: { scores: Score[] }) => {
   return (
-    <div>
-      {scores.map((player, index) => (
-        <div key={player.name}>
-          {player.name}: {getScoreSum(player.score)}
-        </div>
-      ))}
+    <div className="flex flex-col gap-5">
+      <div>
+        {sortScores(scores).map((player, index) => (
+          <div>
+            {index + 1}: {player.name}: {getScoreSum(player.score)}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

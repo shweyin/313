@@ -1,10 +1,11 @@
-import { getPlaceNumber, getScoreSum } from "@/utils/helpers/calculateScores";
+import { getScoreSum, sortScores } from "@/utils/helpers/calculateScores";
 import { Score } from "./Game";
+import { ChangeEvent } from "react";
 
 const colors = [
   ["bg-slate-300", "text-black"],
   ["bg-slate-400", "text-black"],
-  ["bg-slate-500", "text-white"],
+  ["bg-slate-500", "text-black"],
   ["bg-slate-600", "text-white"],
   ["bg-slate-700", "text-white"],
 ];
@@ -16,35 +17,39 @@ const Scoreboard = ({
   scores: Score[];
   setGameState: (gameState: Score[]) => void;
 }) => {
-  const handleNameChange = (e: any) => {
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     let newScores = [...scores];
-    newScores[e.target.id].name = e.target.value;
+    newScores[+e.target.id].name = e.target.value;
 
     setGameState(newScores);
   };
 
-  const handleInput = (e: any) => {
-    const playerIndex = e.target.id.substring(0, e.target.id.lastIndexOf("-"));
-    const roundIndex = e.target.id.substring(e.target.id.indexOf("-") + 1);
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const playerIndex = +e.target.id.substring(0, e.target.id.lastIndexOf("-"));
+    const roundIndex = +e.target.id.substring(e.target.id.indexOf("-") + 1);
 
-    let newScores = [...scores];
-    let newScore = scores[playerIndex].score;
-    newScore[roundIndex] = e.target.value;
-
-    newScores[playerIndex] = { ...scores[playerIndex], score: newScore };
+    const newScores = scores.map((player, index) => {
+      if (index === playerIndex) {
+        const newScore = [...player.score];
+        newScore[roundIndex] = e.target.value === "" ? null : +e.target.value;
+        return { ...player, score: newScore };
+      }
+      return player;
+    });
 
     setGameState(newScores);
   };
 
   const removePlayer = (index: number) => {
-    if (scores.length === 1) return;
+    if (scores.length === 0) return;
     const newGameState = [...scores];
     newGameState.splice(index, 1);
     setGameState(newGameState);
   };
+
   return (
     <div className="flex flex-col p-5 gap-5 text-xs rounded-md">
-      <div className="grid grid-cols-[100px_repeat(11,1fr)_30px_30px_30px] text-center gap-2">
+      <div className="grid grid-cols-[100px_repeat(11,1fr)_30px_30px] text-center gap-2">
         <div>Player</div>
         {["3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "J", "Q", "K"].map(
           (round) => (
@@ -52,13 +57,12 @@ const Scoreboard = ({
           )
         )}
         <div>Total</div>
-        <div>Place</div>
         <div></div>
       </div>
       {scores.map((player, playerIndex) => (
         <div
           key={playerIndex}
-          className="grid grid-cols-[100px_repeat(11,1fr)_30px_30px_30px] items-center gap-2"
+          className="grid grid-cols-[100px_repeat(11,1fr)_30px_30px] items-center gap-2"
         >
           <input
             onChange={handleNameChange}
@@ -70,23 +74,22 @@ const Scoreboard = ({
               event.target.select();
             }}
           />
-          {player.score.map((score: any, round: any) => (
+          {player.score.map((score: number | null, round: number) => (
             <input
               key={round}
+              type="number"
               tabIndex={(round + 1) * scores.length + playerIndex + 1}
               className={`${
                 colors[playerIndex % 5][0] + " " + colors[playerIndex % 5][1]
               } min-w-0 focus:opacity-80 rounded-sm p-1 focus:outline-white input input-bordered input-xs`}
               id={`${playerIndex}-${round}`}
-              value={scores[playerIndex].score[round]}
-              type="number"
+              value={scores[playerIndex].score[round] ?? ""}
               onChange={handleInput}
             />
           ))}
           <div className="text-center">{getScoreSum(player.score)}</div>
-          <div className="text-center">{getPlaceNumber(scores, player)}</div>
           <button
-            className="flex justify-center"
+            className="flex justify-center hover:opacity-70"
             onClick={() => removePlayer(playerIndex)}
           >
             <svg

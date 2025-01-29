@@ -8,13 +8,13 @@ import StartScreen from "./StartScreen";
 const BLANK_GAME: Score[] = [
   {
     name: "New Player",
-    score: ["", "", "", "", "", "", "", "", "", "", ""],
+    score: new Array(11).fill(null),
   },
 ];
 
 export type Score = {
   name: string;
-  score: string[];
+  score: (number | null)[];
 };
 
 export default function Game() {
@@ -37,7 +37,7 @@ export default function Game() {
       ...scores,
       {
         name: `New Player`,
-        score: ["", "", "", "", "", "", "", "", "", "", ""],
+        score: new Array(11).fill(null),
       },
     ]);
   };
@@ -46,7 +46,7 @@ export default function Game() {
     setGameState(
       scores.map((e) => ({
         ...e,
-        score: ["", "", "", "", "", "", "", "", "", "", ""],
+        score: new Array(11).fill(null),
       }))
     );
   };
@@ -56,7 +56,7 @@ export default function Game() {
       style={{ backgroundImage: `url(${Sky.src})` }}
       className="bg-no-repeat bg-cover bg-center bg-fixed flex absolute inset-0 p-5 sm:p-10"
     >
-      <div className="flex flex-col overflow-x-auto">
+      <div className="flex grow flex-col overflow-x-auto">
         <StartScreen />
 
         <div className="flex gap-3 items-center pb-5">
