@@ -36,7 +36,7 @@ export default function Game() {
     setGameState([
       ...scores,
       {
-        name: `New Player`,
+        name: `New Player` + scores.length,
         score: new Array(11).fill(null),
       },
     ]);
@@ -52,11 +52,11 @@ export default function Game() {
   };
 
   return (
-    <main
+    <div
       style={{ backgroundImage: `url(${Sky.src})` }}
       className="bg-no-repeat bg-cover bg-center bg-fixed flex absolute inset-0 p-5 sm:p-10"
     >
-      <div className="flex grow flex-col overflow-x-auto">
+      <div className="flex grow flex-col overflow-x-hidden">
         <StartScreen />
 
         <div className="flex gap-3 items-center pb-5">
@@ -72,7 +72,7 @@ export default function Game() {
             type="radio"
             name="my_tabs"
             role="tab"
-            className="tab"
+            className="tab text-white bg-gray-600"
             aria-label="Scoreboard"
             defaultChecked
           />
@@ -87,17 +87,17 @@ export default function Game() {
             type="radio"
             name="my_tabs"
             role="tab"
-            className="tab"
+            className="tab text-white bg-gray-600"
             aria-label="Rankings"
           />
           <div
             role="tabpanel"
-            className="tab-content bg-gray-800 rounded-box p-6"
+            className="tab-content bg-gray-800 rounded-b-box rounded-r-box p-6"
           >
             <RankingsBoard scores={scores} />
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
